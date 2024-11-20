@@ -1,0 +1,31 @@
+<h2>Dodaj Książkę</h2>
+<form (ngSubmit)="saveBook()">
+  <div>
+    <label for="name">Nazwa:</label>
+    <input id="name" [(ngModel)]="book.name" name="name" required />
+  </div>
+
+  <div>
+    <label for="author">Autor:</label>
+    <select id="author" [(ngModel)]="book.author" name="author" required>
+      <option *ngFor="let author of authors" [ngValue]="author">{{ author.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="publisher">Wydawca:</label>
+    <input id="publisher" [(ngModel)]="book.publisher" name="publisher" />
+  </div>
+
+  <div>
+    <label for="year">Rok:</label>
+    <input id="year" type="number" [(ngModel)]="book.year" name="year" />
+  </div>
+
+  <div>
+    <label for="price">Cena:</label>
+    <input id="price" type="number" [(ngModel)]="book.price" name="price" required />
+  </div>
+
+  <button type="submit" [disabled]="isLoading">Zapisz</button>
+</form>

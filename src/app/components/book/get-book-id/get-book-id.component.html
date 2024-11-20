@@ -1,0 +1,19 @@
+<div *ngIf="isLoading" class="loading">
+    <p>Ładowanie danych książki...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && book">
+    <h2>Szczegóły książki</h2>
+    <p><strong>ID:</strong> {{ book.id }}</p>
+    <p><strong>Tytuł:</strong> {{ book.name }}</p>
+    <p><strong>Rok wydania:</strong> {{ book.year }}</p>
+    <p><strong>Wydawca:</strong> {{ book.publisher }}</p>
+    <p><strong>Rok:</strong> {{ book.year }}</p>
+    <p><strong>Cena:</strong> {{ book.price }} zł</p>
+    <p><strong>Autor:</strong> {{ book.author?.name || 'Brak autora' }}</p>
+  </div>
+  
+  <div *ngIf="!isLoading && !book">
+    <p>Nie znaleziono książki.</p>
+  </div>
+  

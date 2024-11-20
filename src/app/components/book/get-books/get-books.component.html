@@ -1,0 +1,38 @@
+<div *ngIf="isLoading" class="loading">
+    <p>Ładowanie danych...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && books.length > 0">
+    <h2>Lista Książek</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nazwa</th>
+          <th>Autor</th>
+          <th>Wydawca</th>
+          <th>Rok</th>
+          <th>Cena</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.id }}</td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.author?.name }}</td>
+          <td>{{ book.publisher }}</td>
+          <td>{{ book.year }}</td>
+          <td>{{ book.price }}</td>
+          <td>
+            <button (click)="deleteBook(book.id)">Usuń</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div *ngIf="!isLoading && books.length === 0">
+    <p>Brak książek do wyświetlenia.</p>
+  </div>
+  
