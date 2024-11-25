@@ -1,14 +1,16 @@
-<h2>Dodaj Autora</h2>
-<form (ngSubmit)="saveAuthor()">
-  <div>
-    <label for="name">Imię i nazwisko:</label>
-    <input id="name" [(ngModel)]="author.name" name="name" required />
-  </div>
+<div class="post-author-container">
+  <h2>Dodaj Autora</h2>
+  <form (ngSubmit)="saveAuthor()" class="form-container">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label for="name">Imię i nazwisko:</mat-label>
+      <input id="name" matInput [(ngModel)]="author.name" name="name" required />
+    </mat-form-field>
 
-  <div>
-    <label for="nationality">Narodowość:</label>
-    <input id="nationality" [(ngModel)]="author.nationality" name="nationality" required />
-  </div>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label for="nationality">Narodowość:</mat-label>
+      <input id="nationality" matInput [(ngModel)]="author.nationality" name="nationality" required />
+    </mat-form-field>
 
-  <button type="submit" [disabled]="isLoading">Zapisz</button>
-</form>
+    <button type="submit" [disabled]="isLoading">Zapisz</button>
+  </form>
+</div>

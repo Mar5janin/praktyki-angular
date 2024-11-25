@@ -1,43 +1,44 @@
 <div *ngIf="isLoading" class="loading">
     <p>Ładowanie danych książki...</p>
-    </div>
-
-    <div *ngIf="!isLoading && book">
+  </div>
+  
+  <div *ngIf="!isLoading && book" class="update-book-container">
     <h2>Edytuj Książkę</h2>
     <form (ngSubmit)="updateBook()">
-        <div>
+      <div>
         <label for="name">Tytuł:</label>
         <input id="name" [(ngModel)]="book.name" name="name" required />
-        </div>
-
-        <div>
+      </div>
+  
+      <div>
         <label for="year">Rok wydania:</label>
         <input id="year" type="number" [(ngModel)]="book.year" name="year" required />
-        </div>
-
-        <div>
+      </div>
+  
+      <div>
         <label for="publisher">Wydawca:</label>
         <input id="publisher" [(ngModel)]="book.publisher" name="publisher" />
-        </div>
-
-        <div>
+      </div>
+  
+      <div>
         <label for="price">Cena:</label>
         <input id="price" type="number" [(ngModel)]="book.price" name="price" required />
-        </div>
-
-        <div>
+      </div>
+  
+      <div>
         <label for="author">Autor:</label>
         <select id="author" [(ngModel)]="book.author" name="author">
-            <option *ngFor="let author of authors" [ngValue]="author">
+          <option *ngFor="let author of authors" [ngValue]="author">
             {{ author.name }}
-            </option>
+          </option>
         </select>
-        </div>
-
-        <button type="submit" [disabled]="isLoading">Zapisz zmiany</button>
+      </div>
+  
+      <button type="submit" [disabled]="isLoading">Zapisz zmiany</button>
     </form>
-    </div>
-
-    <div *ngIf="!isLoading && !book">
+  </div>
+  
+  <div *ngIf="!isLoading && !book">
     <p>Nie znaleziono książki do edycji.</p>
-    </div>
+  </div>
+  

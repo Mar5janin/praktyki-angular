@@ -1,13 +1,14 @@
 <div *ngIf="isLoading" class="loading">
-    <p>Ładowanie danych autora...</p>
-  </div>
-  
-  <div *ngIf="!isLoading && author">
+  <p>Ładowanie danych autora...</p>
+</div>
+
+<div *ngIf="!isLoading && author" class="author-details-container">
+  <div class="author-details">
     <h2>Szczegóły autora</h2>
     <p><strong>ID:</strong> {{ author.id }}</p>
     <p><strong>Imię i nazwisko:</strong> {{ author.name }}</p>
     <p><strong>Narodowość:</strong> {{ author.nationality }}</p>
-  
+
     <h3>Książki autora:</h3>
     <ul *ngIf="author.books?.length; else noBooks">
       <li *ngFor="let book of author.books">
@@ -17,13 +18,13 @@
         <strong>Cena:</strong> {{ book.price }} zł
       </li>
     </ul>
-  
+
     <ng-template #noBooks>
       <p>Ten autor nie napisał jeszcze żadnych książek.</p>
     </ng-template>
   </div>
-  
-  <div *ngIf="!isLoading && !author">
-    <p>Nie znaleziono autora.</p>
-  </div>
-  
+</div>
+
+<div *ngIf="!isLoading && !author">
+  <p>Nie znaleziono autora.</p>
+</div>

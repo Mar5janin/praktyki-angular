@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetBookIdComponent } from './get-book-id.component';
+import { GetBookIDComponent } from './get-book-id.component';
 
-describe('GetBookIdComponent', () => {
-  let component: GetBookIdComponent;
-  let fixture: ComponentFixture<GetBookIdComponent>;
+describe('GetBookIDComponent', () => {
+  let component: GetBookIDComponent;
+  let fixture: ComponentFixture<GetBookIDComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetBookIdComponent ]
+      declarations: [ GetBookIDComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GetBookIdComponent);
+    fixture = TestBed.createComponent(GetBookIDComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

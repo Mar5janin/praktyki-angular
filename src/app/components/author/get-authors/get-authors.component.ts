@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService, AuthorDTO } from '../../../services/author.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-authors',
@@ -10,7 +11,7 @@ export class GetAuthorsComponent implements OnInit {
   authors: AuthorDTO[] = [];
   isLoading = true;
 
-  constructor(private authorService: AuthorService) {}
+  constructor(private authorService: AuthorService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchAuthors();
@@ -39,5 +40,17 @@ export class GetAuthorsComponent implements OnInit {
         error: (err) => console.error('Error deleting author:', err)
       });
     }
+  }
+
+  goToAuthorDetails(id: number): void {
+    this.router.navigate(['/authors', id]);
+  }
+
+  navigateToPostAuthor(): void {
+    this.router.navigate(['/authors/post']);
+  }
+
+  navigateToBooks(): void {
+    this.router.navigate(['/books']);
   }
 }

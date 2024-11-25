@@ -1,34 +1,38 @@
-<div *ngIf="isLoading" class="loading">
-    <p>Ładowanie danych...</p>
+<div class="authors-list-container">
+  <h2>Lista Autorów</h2>
+
+  <div class="toolbar">
+    <button mat-raised-button color="accent" (click)="navigateToPostAuthor()">
+      Dodaj autora
+    </button>
+    <button mat-raised-button color="primary" (click)="navigateToBooks()">
+      Zobacz książki
+    </button>
   </div>
-  
-  <div *ngIf="!isLoading && authors.length > 0">
-    <h2>Lista Autorów</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Imię i nazwisko</th>
-          <th>Narodowość</th>
-          <th>Liczba Książek</th>
-          <th>Akcje</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let author of authors">
-          <td>{{ author.id }}</td>
-          <td>{{ author.name }}</td>
-          <td>{{ author.nationality }}</td>
-          <td>{{ author.books?.length || 0 }}</td>
-          <td>
-            <button (click)="deleteAuthor(author.id)">Usuń</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+  <div *ngIf="authors && authors.length > 0; else noAuthors">
+    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+      <mat-grid-tile *ngFor="let author of authors">
+        <mat-card class="author-card">
+          <mat-card-title>{{ author.name }}</mat-card-title>
+          <mat-card-content>
+            <p><strong>Id:</strong> {{ author.id }}</p>
+            <p><strong>Narodowość:</strong> {{ author.nationality }}</p>
+            <p><strong>Liczba książek:</strong> {{ author.books?.length || 0 }}</p>
+          </mat-card-content>
+          <mat-card-actions class="actions">
+            <button mat-raised-button color="primary" (click)="goToAuthorDetails(author.id)">
+              Więcej szczegółów
+            </button>
+            <button mat-raised-button color="warn" (click)="deleteAuthor(author.id)">
+              Usuń
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
-  
-  <div *ngIf="!isLoading && authors.length === 0">
-    <p>Brak autorów do wyświetlenia.</p>
-  </div>
-  
+  <ng-template #noAuthors>
+    <p>Nie znaleziono autorów.</p>
+  </ng-template>
+</div>

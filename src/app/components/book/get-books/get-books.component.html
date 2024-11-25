@@ -1,38 +1,37 @@
-<div *ngIf="isLoading" class="loading">
-    <p>Ładowanie danych...</p>
+<div class="books-list-container">
+  <h2>Lista Książek</h2>
+
+  <div class="toolbar">
+    <button mat-raised-button color="accent" (click)="navigateToPostBook()">
+      Dodaj książkę
+    </button>
+    <button mat-raised-button color="primary" (click)="navigateToAuthors()">
+      Zobacz autorów
+    </button>
   </div>
-  
-  <div *ngIf="!isLoading && books.length > 0">
-    <h2>Lista Książek</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nazwa</th>
-          <th>Autor</th>
-          <th>Wydawca</th>
-          <th>Rok</th>
-          <th>Cena</th>
-          <th>Akcje</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let book of books">
-          <td>{{ book.id }}</td>
-          <td>{{ book.name }}</td>
-          <td>{{ book.author?.name }}</td>
-          <td>{{ book.publisher }}</td>
-          <td>{{ book.year }}</td>
-          <td>{{ book.price }}</td>
-          <td>
-            <button (click)="deleteBook(book.id)">Usuń</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+  <div *ngIf="books && books.length > 0; else noBooks">
+    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+      <mat-grid-tile *ngFor="let book of books">
+        <mat-card class="book-card">
+          <mat-card-title>{{ book.name }}</mat-card-title>
+          <mat-card-content>
+            <p><strong>Autor:</strong> {{ book.author?.name || 'Nieznany' }}</p>
+            <p><strong>Cena:</strong> {{ book.price }} zł</p>
+          </mat-card-content>
+          <mat-card-actions class="actions">
+            <button mat-raised-button color="primary" (click)="goToDetails(book.id)">
+              Więcej szczegółów
+            </button>
+            <button mat-raised-button color="warn" (click)="deleteBook(book.id)">
+              Usuń
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
-  
-  <div *ngIf="!isLoading && books.length === 0">
-    <p>Brak książek do wyświetlenia.</p>
-  </div>
-  
+  <ng-template #noBooks>
+    <p>Nie znaleziono książek.</p>
+  </ng-template>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService, BookDTO } from '../../../services/book.service';
 
 @Component({
@@ -9,15 +9,16 @@ import { BookService, BookDTO } from '../../../services/book.service';
 })
 export class GetBookIDComponent implements OnInit {
   book: BookDTO | null = null;
-  isLoading = true; 
+  isLoading = true;
 
   constructor(
     private bookService: BookService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    const bookId = this.route.snapshot.params['id']; 
+    const bookId = this.route.snapshot.params['id'];
     if (bookId) {
       this.fetchBookDetails(bookId);
     }
@@ -35,5 +36,9 @@ export class GetBookIDComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  goToUpdatePage(bookId: number): void {
+    this.router.navigate(['books/update', bookId]);
   }
 }
